@@ -192,7 +192,7 @@ quint32 CMuPdfWrap::PageCount()
     return m_pVars->PageCount();
 }
 
-CMuPdfWrap::RET_CODE CMuPdfWrap::DrawPage(quint32 nPageNum, bool bGrayScale, quint16 nWidth)
+CMuPdfWrap::RET_CODE CMuPdfWrap::DrawPage(quint32 nPageNum, bool bGrayScale, quint16 nWidth, QString strPath)
 {
     m_pVars->SetGray(bGrayScale);
     if (!m_pVars->Doc())
@@ -287,7 +287,6 @@ CMuPdfWrap::RET_CODE CMuPdfWrap::DrawPage(quint32 nPageNum, bool bGrayScale, qui
 			fz_run_page(m_pVars->Doc(), page, dev, ctm, &cookie);
         }
 		fz_free_device(dev);
-
 		dev = NULL;
         
         /*
@@ -298,8 +297,7 @@ CMuPdfWrap::RET_CODE CMuPdfWrap::DrawPage(quint32 nPageNum, bool bGrayScale, qui
 		if (savealpha)
 			fz_unmultiply_pixmap(m_pVars->Ctx(), pix);
          */   
-        char* szFileOut="test.png";
-        fz_write_png(m_pVars->Ctx(), pix, szFileOut, 0);			
+        fz_write_png(m_pVars->Ctx(), pix, strPath.toAscii().data(), 0);			
 	}
 	fz_always(m_pVars->Ctx())
 	{
@@ -314,6 +312,10 @@ CMuPdfWrap::RET_CODE CMuPdfWrap::DrawPage(quint32 nPageNum, bool bGrayScale, qui
         return  RET_CODE_ERROR;
 	}
     
+    if (list)
+		fz_free_display_list(m_pVars->Ctx(), list);
+
+	fz_free_page(m_pVars->Doc(), page);
 
     return RET_CODE_SUCCESS;
 }

@@ -10,12 +10,13 @@ int main(int argc, char *argv[])
         QDir dir("../../../samples");   
         QString strFilePath =  dir.absoluteFilePath("BlenderCourse.pdf");
 
+        QString strFileOutPath =  QString("Out.png");
+
         CMuPdfWrap pdfWarp(NULL);
         if (pdfWarp.OpenPdf(strFilePath, "", "") == CMuPdfWrap::RET_CODE_SUCCESS)
         {
             qDebug()<<"Page Count :" << pdfWarp.PageCount();
-            pdfWarp.DrawPage(3, false, 1080);
-
+            pdfWarp.DrawPage(3, false, 1080, strFileOutPath);
         }
     }
 

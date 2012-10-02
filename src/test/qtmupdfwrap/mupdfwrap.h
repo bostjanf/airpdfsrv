@@ -19,7 +19,7 @@ public:
 
     RET_CODE OpenPdf(QString strAbsPath, QString strRelPath, QString m_strPwd);
     quint32 PageCount();
-    RET_CODE DrawPage(quint32 nPageNum, bool bGrayScale, quint16 nWidth);
+    RET_CODE DrawPage(quint32 nPageNum, bool bGrayScale, quint16 nWidth, QString strPath);
 protected:
     InternalMuPdfs* m_pVars;
 
