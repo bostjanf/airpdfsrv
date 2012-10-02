@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qtmupdfwrap", "test\qtmupdfwrap\qtmupdfwrap.vcxproj", "{11F5F89A-0D34-4C79-B06C-E6CDCE53723E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{73642DED-685F-4F12-B9D3-87D3F5E789D1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "airpdfsrv", "airpdfsrv\airpdfsrv.vcxproj", "{ED9631DD-78F2-463B-88DD-47320EA1F24A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,8 +17,15 @@ Global
 		{11F5F89A-0D34-4C79-B06C-E6CDCE53723E}.Debug|Win32.Build.0 = Debug|Win32
 		{11F5F89A-0D34-4C79-B06C-E6CDCE53723E}.Release|Win32.ActiveCfg = Release|Win32
 		{11F5F89A-0D34-4C79-B06C-E6CDCE53723E}.Release|Win32.Build.0 = Release|Win32
+		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Debug|Win32.Build.0 = Debug|Win32
+		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Release|Win32.ActiveCfg = Release|Win32
+		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11F5F89A-0D34-4C79-B06C-E6CDCE53723E} = {73642DED-685F-4F12-B9D3-87D3F5E789D1}
 	EndGlobalSection
 EndGlobal
