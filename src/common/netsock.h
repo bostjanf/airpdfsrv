@@ -4,6 +4,7 @@ class CNetMsgBase;
 class IBridgeNet;
 class CNetSock : public QTcpSocket
 {
+    Q_OBJECT
 public:
     CNetSock(IBridgeNet* m_pBridge, QObject *parent=NULL);
     ~CNetSock();

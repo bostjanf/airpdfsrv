@@ -3,6 +3,8 @@
 #include "mupdfwrap.h"
 #include "netsock.h"
 
+#include "netmsgs.h"
+
 CSrvBridge::CSrvBridge(void)
 {
 }
@@ -35,6 +37,7 @@ CNetSrvBridge::~CNetSrvBridge(void)
 void CNetSrvBridge::SetNetSock(CNetSock* pSock)
 {
     m_pNetSocket=pSock;
+    SendMsg(new CNetMsgSrvVersion());
 }
 
 

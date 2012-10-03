@@ -1,6 +1,8 @@
 #include "stdafx.h"
 
 #include "netident.h"
+#include "tcpsrv.h"
+#include "appsettings.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,5 +20,11 @@ int main(int argc, char *argv[])
     CNetIdent netIdent(AIRPDF_MSG_ID_BROADCAST_SRV);
     netIdent.Init();
    
+
+    CTcpSrv srv;
+    if (srv.Start(CAppSettings::Instance()->GetSrvPort()))
+    {
+        return a.exec();
+    }
     return a.exec();
 }

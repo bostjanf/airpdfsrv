@@ -67,7 +67,6 @@ void CNetSock::ForceClose(QString strError)
 {
     close();
     m_pBridge->OnError(strError);
-    Q_ASSERT(NULL);
 }
 
 void CNetSock::SockBytesSend(qint64 nSend)
