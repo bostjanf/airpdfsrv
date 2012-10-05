@@ -244,6 +244,7 @@ CNetMsgBase* CNetMsgFactory::CreateMsg(QBuffer& buffer)
         case AIRPDF_MSG_ID_SRV_VERSION: return new CNetMsgSrvVersion(header);
         case AIRPDF_MSG_ID_GUI_VERSION: return new CNetMsgGuiVersion(header);
         case AIRPDF_MSG_ID_IOS_VERSION: return new CNetMsgIosVersion(header);
+        case AIRPDF_MSG_ID_SRV_INFO: return new CNetMsgSrvInfo(header);
         case AIRPDF_MSG_ID_ERROR: return new CNetMsgError(header);
 
         case AIRPDF_MSG_ID_REQ_DIR: return new CNetMsgReqDir(header);

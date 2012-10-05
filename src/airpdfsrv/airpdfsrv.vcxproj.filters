@@ -97,6 +97,15 @@
     <ClCompile Include="..\..\build\airpdfsrv\Release\moc_netsock.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\build\airpdfsrv\Debug\moc_server.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfsrv\Release\moc_server.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="server.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mupdfwrap.h">
@@ -109,6 +118,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="tcpsrv.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="server.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

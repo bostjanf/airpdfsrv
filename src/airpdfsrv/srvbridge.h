@@ -2,7 +2,7 @@
 
 #include "ibridge.h"
 
-class CMuPdfWrap;
+class CServer;
 class CSrvBridge : public IBridgeNet
 {
 public:
@@ -10,7 +10,7 @@ public:
     virtual ~CSrvBridge(void);
     bool OnReceivedMsg(CNetMsgBase* pMsg);    
 protected:
-    CMuPdfWrap* m_pMuPdf;
+    CServer* m_pServer;    
 };
 
 class CNetSrvBridge : public CSrvBridge
@@ -19,9 +19,9 @@ public:
      CNetSrvBridge(void);
     virtual ~CNetSrvBridge(void);
     void SetNetSock(CNetSock* pSock);
-protected:
-    bool SendMsg(CNetMsgBase* pMsg);
-    bool OnError(QString strTxt);
+
+    void SendMsg(CNetMsgBase* pMsg);
+    void OnError(QString strTxt);
 protected:
     CNetSock* m_pNetSocket;
 };

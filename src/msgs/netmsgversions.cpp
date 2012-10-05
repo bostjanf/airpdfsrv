@@ -4,10 +4,8 @@
 
 ///////////////////////CNetMsgSrvVersion////////////////////////////
 CNetMsgSrvVersion::CNetMsgSrvVersion()
-    :CNetMsgBaseBuffered(AIRPDF_MSG_ID_SRV_VERSION),m_nVersion(0),m_nOS(0),m_nFlags(0)
+    :CNetMsgBaseBuffered(AIRPDF_MSG_ID_SRV_VERSION),m_nVersion(PROTOCOL_VERSION),m_nOS(0),m_nFlags(0)
 {
-    m_nVersion = PROTOCOL_VERSION;
-
 #if defined(Q_WS_WIN)
     m_nOS = PROTOCOL_MACHINE_OS_WINDOWS;
 #elif defined(Q_WS_MAC)
@@ -20,7 +18,6 @@ CNetMsgSrvVersion::CNetMsgSrvVersion()
     m_strGuid = QString(CAppSettings::Instance()->GetGuid().toHex()); 
     m_nFlags= CAppSettings::Instance()->GetFlags(); 
 #endif
-
 }
 
 CNetMsgSrvVersion::CNetMsgSrvVersion(CNetHeader& header)
@@ -64,9 +61,16 @@ bool CNetMsgSrvVersion::SaveMsg(QDataStream& out)
 
 ///////////////////////CNetMsgGuiVersion////////////////////////////
 CNetMsgGuiVersion::CNetMsgGuiVersion()
-    :CNetMsgBaseBuffered(AIRPDF_MSG_ID_GUI_VERSION),m_nVersion(0)
+    :CNetMsgBaseBuffered(AIRPDF_MSG_ID_GUI_VERSION),m_nVersion(PROTOCOL_VERSION),m_nOS(0)
 {
-     m_nVersion = 1*255 +1;
+#if defined(Q_WS_WIN)
+    m_nOS = PROTOCOL_MACHINE_OS_WINDOWS;
+#elif defined(Q_WS_MAC)
+     m_nOS = PROTOCOL_MACHINE_OS_OSX;
+#elif if defined(Q_WS_X11)
+     m_nOS = PROTOCOL_MACHINE_OS_LINUX;
+#endif;
+     m_strComp=QHostInfo::localHostName();
 }
 
 CNetMsgGuiVersion::CNetMsgGuiVersion(CNetHeader& header)
@@ -91,12 +95,16 @@ quint16 CNetMsgGuiVersion::MinorVersion()
 bool CNetMsgGuiVersion::LoadMsg(QDataStream& in)
 {
     in >> m_nVersion;if(in.status()!=QDataStream::Ok){Q_ASSERT(NULL); return false;}
+    in >> m_nOS;if(in.status()!=QDataStream::Ok){Q_ASSERT(NULL); return false;}
+    if (!ReadString(m_strComp,in)){Q_ASSERT(NULL);return false;}
     return true;
 }
 
 bool CNetMsgGuiVersion::SaveMsg(QDataStream& out)
 {
     out << m_nVersion;
+    out << m_nOS;
+    if (!WriteString(m_strComp,out)){Q_ASSERT(NULL);return false;}
     return true;
 }
 
@@ -129,6 +137,7 @@ bool CNetMsgIosVersion::LoadMsg(QDataStream& in)
 {
     in >> m_nVersion;if(in.status()!=QDataStream::Ok){Q_ASSERT(NULL); return false;}
     in >> m_nDev;    if(in.status()!=QDataStream::Ok){Q_ASSERT(NULL); return false;}    
+    if (!ReadString(m_strDevName,in)){Q_ASSERT(NULL);return false;}
     return true;
 }
 
@@ -136,9 +145,38 @@ bool CNetMsgIosVersion::SaveMsg(QDataStream& out)
 {
     out << m_nVersion;
     out << m_nDev; 
+    if (!WriteString(m_strDevName,out)){Q_ASSERT(NULL);return false;}
     return true;
 }
 
+///////////////////////CNetMsgSrvInfo////////////////////////////
+CNetMsgSrvInfo::CNetMsgSrvInfo(quint32 nFlags, QString strInfo)
+    :CNetMsgBaseBuffered(AIRPDF_MSG_ID_SRV_INFO),m_nFlags(nFlags),m_strInfo(strInfo)
+{
+}
+
+CNetMsgSrvInfo::CNetMsgSrvInfo(CNetHeader& header)
+    :CNetMsgBaseBuffered(header)
+{    
+}
+CNetMsgSrvInfo::~CNetMsgSrvInfo(void)
+{
+}
+
+
+bool CNetMsgSrvInfo::LoadMsg(QDataStream& in)
+{
+    in >> m_nFlags;if(in.status()!=QDataStream::Ok){Q_ASSERT(NULL); return false;}
+    if (!ReadString(m_strInfo,in)){Q_ASSERT(NULL);return false;}
+    return true;
+}
+
+bool CNetMsgSrvInfo::SaveMsg(QDataStream& out)
+{ 
+    out << m_nFlags;
+    if (!WriteString(m_strInfo,out)){Q_ASSERT(NULL);return false;}
+    return true;
+}
 
 ///////////////////////CNetMsgError////////////////////////////
 CNetMsgError::CNetMsgError(QString strError)
@@ -153,7 +191,6 @@ CNetMsgError::CNetMsgError(CNetHeader& header)
 CNetMsgError::~CNetMsgError(void)
 {
 }
-
 
 bool CNetMsgError::LoadMsg(QDataStream& in)
 {

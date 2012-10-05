@@ -15,8 +15,8 @@ protected:
     bool SaveMsg(QDataStream& out);
 protected:
     quint16 m_nVersion;
-    quint8  m_nOS;
-    quint64 m_nFlags;
+    quint8  m_nOS;     //PROTOCOL_MACHINE_OS_XXX
+    quint64 m_nFlags;  
     QString m_strGuid;
 };
 
@@ -30,12 +30,15 @@ public:
     virtual ~CNetMsgGuiVersion(void); 
     quint16 MajorVersion();
     quint16 MinorVersion();
-     
+    quint8 Os(){return m_nOS;}
+    QString Comp(){return m_strComp;}
 protected:
     bool LoadMsg(QDataStream& in);
     bool SaveMsg(QDataStream& out);
 protected:
     quint16 m_nVersion;
+    quint8  m_nOS;     //PROTOCOL_MACHINE_OS_XXX
+    QString m_strComp;
 };
 
 
@@ -49,21 +52,38 @@ public:
     quint16 MajorVersion();
     quint16 MinorVersion();
     quint8 Device(){return m_nDev;}
+    QString DevName(){return m_strDevName;}
 protected:
     bool LoadMsg(QDataStream& in);
     bool SaveMsg(QDataStream& out);
 protected:
     quint16 m_nVersion;
     quint8  m_nDev;
+    QString m_strDevName;
 };
 
+
+///////////////////////CNetMsgSrvInfo////////////////////////////
+class CNetMsgSrvInfo : public CNetMsgBaseBuffered
+{
+public:
+    CNetMsgSrvInfo(quint32 nFlags, QString strInfo);
+    CNetMsgSrvInfo(CNetHeader& header);
+    virtual ~CNetMsgSrvInfo(void);     
+    quint32 Flags(){return m_nFlags;}
+protected:
+    bool LoadMsg(QDataStream& in);
+    bool SaveMsg(QDataStream& out);
+protected:
+    quint32 m_nFlags;
+    QString m_strInfo;
+};
 
 ///////////////////////CNetMsgBookPageError////////////////////////////
 class CNetMsgError : public CNetMsgBaseBuffered
 {
 public:
     CNetMsgError(QString strError);
-
     CNetMsgError(CNetHeader& header);
     virtual ~CNetMsgError(void); 
     QString Error() {return m_strError;}

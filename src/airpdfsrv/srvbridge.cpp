@@ -1,25 +1,51 @@
 #include "StdAfx.h"
 #include "srvbridge.h"
-#include "mupdfwrap.h"
 #include "netsock.h"
-
+#include "server.h"
 #include "netmsgs.h"
 
+
+#define CHECK_SRV_STAT() if (m_pServer == NULL){OnError(QString("Unexpected msg %1").arg(pMsgIn->MsgId())); return true;}
+
 CSrvBridge::CSrvBridge(void)
+    :m_pServer(NULL)
 {
 }
 
 
 CSrvBridge::~CSrvBridge(void)
 {
+    if (m_pServer)
+    {
+        delete m_pServer;
+        m_pServer=NULL;
+    }
 }
 
-
-bool CSrvBridge::OnReceivedMsg(CNetMsgBase* pMsg)
+bool CSrvBridge::OnReceivedMsg(CNetMsgBase* pMsgIn)
 {
-    return true;
+    switch (pMsgIn->MsgId())
+    {
+        case AIRPDF_MSG_ID_GUI_VERSION:
+        {
+            CNetMsgGuiVersion* pMsg=(CNetMsgGuiVersion*)pMsgIn;
+            if (m_pServer == NULL){m_pServer=new CServer(this);}            
+            return m_pServer->OnMsgGuiVersion(pMsg);
+        }
+        case AIRPDF_MSG_ID_IOS_VERSION:
+        {
+            CNetMsgIosVersion* pMsg=(CNetMsgIosVersion*)pMsgIn;
+            if (m_pServer == NULL){m_pServer=new CServer(this);}            
+            return m_pServer->OnMsgIosVersion(pMsg);         
+        };
+        case AIRPDF_MSG_ID_REQ_DIR:
+        {
+            CHECK_SRV_STAT();            
+            return m_pServer->OnMsgReqDir((CNetMsgReqDir*)pMsgIn);
+        }
+   }
+   return true;
 }
-
 
 ///////////////////////////////////////
 
@@ -41,16 +67,14 @@ void CNetSrvBridge::SetNetSock(CNetSock* pSock)
 }
 
 
-bool CNetSrvBridge::OnError(QString strTxt)
+void CNetSrvBridge::OnError(QString strTxt)
 {
     m_pNetSocket->deleteLater();
-    return true;
 }
 
-bool CNetSrvBridge::SendMsg(CNetMsgBase* pMsg)
+void CNetSrvBridge::SendMsg(CNetMsgBase* pMsg)
 {
     m_pNetSocket->SendMsg(pMsg);
-    return true;
 }
 
 

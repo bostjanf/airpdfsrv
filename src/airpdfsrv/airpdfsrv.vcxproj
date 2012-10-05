@@ -20,6 +20,9 @@
     <ClCompile Include="..\..\build\airpdfsrv\Debug\moc_netsock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\build\airpdfsrv\Debug\moc_server.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\build\airpdfsrv\Release\moc_mupdfwrap.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -27,6 +30,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\build\airpdfsrv\Release\moc_netsock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfsrv\Release\moc_server.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\common\airpdflog.cpp" />
@@ -43,6 +49,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.;$(QTDIR)\include;$(QTDIR)\include\QtCore;.\..\..\build\airpdfsrv\$(ConfigurationName);.\..\..\build\airpdfsrv\GeneratedFiles;.\common;.\msg;.\..\..\thirdparty\mupdf\fitz;.\..\..\thirdparty\mupdf\pdf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.;$(QTDIR)\include;$(QTDIR)\include\QtCore;.\..\..\build\airpdfsrv\$(ConfigurationName);.\..\..\build\airpdfsrv\GeneratedFiles;.\common;.\msg;.\..\..\thirdparty\mupdf\fitz;.\..\..\thirdparty\mupdf\pdf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="server.cpp" />
     <ClCompile Include="srvbridge.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -109,6 +116,16 @@
     <ClInclude Include="..\msgs\netmsgs.h" />
     <ClInclude Include="..\msgs\netmsgsettings.h" />
     <ClInclude Include="..\msgs\netmsgversions.h" />
+    <CustomBuild Include="server.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing server.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\..\..\build\airpdfsrv\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\build\airpdfsrv\$(ConfigurationName)\moc_%(Filename).cpp" "-fStdAfx.h" "-f../../../src/airpdfsrv/server.h"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I.\..\..\build\airpdfsrv\$(ConfigurationName)\." "-I.\..\..\build\airpdfsrv\GeneratedFiles" "-I.\..\common" "-I.\..\msgs"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing server.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\..\..\build\airpdfsrv\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\..\..\build\airpdfsrv\$(ConfigurationName)\moc_%(Filename).cpp" "-fStdAfx.h" "-f../../../src/airpdfsrv/server.h"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_NETWORK_LIB "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I.\..\..\build\airpdfsrv\$(ConfigurationName)\." "-I.\..\..\build\airpdfsrv\GeneratedFiles" "-I.\..\common" "-I.\..\msgs"</Command>
+    </CustomBuild>
     <ClInclude Include="srvbridge.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
