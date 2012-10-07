@@ -8,9 +8,9 @@ CServer::CServer(IBridgeNet* pNet)
     :m_pNet(pNet)
 {
     connect(this, SIGNAL(SendMsg(CNetMsgBase*)), this, SLOT(SendMsgSlot(CNetMsgBase*)),Qt::QueuedConnection);
-    connect(this, SIGNAL(OnError(CNetMsgBase*)), this, SLOT(OnErrorSlot(CNetMsgBase*)), Qt::QueuedConnection);
+    connect(this, SIGNAL(OnError(QString)), this, SLOT(OnErrorSlot(QString)), Qt::QueuedConnection);
 
-     CAppSettings::Instance()->GetRoots(m_hashRoots);
+    CAppSettings::Instance()->GetRoots(m_hashRoots);
 }
 
 CServer::~CServer(void)
@@ -20,35 +20,75 @@ CServer::~CServer(void)
 bool CServer::OnMsgGuiVersion(CNetMsgGuiVersion*pMsg)
 {
     AIRPDF_LOG(LOG_LEVEL_INFO,  QString("Gui version %1.%2 from %3").arg(pMsg->MajorVersion()).arg(pMsg->MinorVersion()).arg(pMsg->Comp()));
-    emit SendMsg(new CNetMsgSrvInfo(0, ""));
+    SendSrvInfo();
     return true;
 }
+
 bool CServer::OnMsgIosVersion(CNetMsgIosVersion*pMsg)
 {
     AIRPDF_LOG(LOG_LEVEL_INFO,  QString("IOS version %1.%2. Device %3 %4.").arg(pMsg->MajorVersion()).arg(pMsg->MinorVersion()).arg(pMsg->Device()).arg(pMsg->DevName()));
-    emit SendMsg(new CNetMsgSrvInfo(0, ""));
+    SendSrvInfo();
     return true;
 }
+
+
 bool CServer::OnMsgReqDir(CNetMsgReqDir*pMsg)
 {
-    QString strDir = pMsg->Root();
-     if (strDir.isEmpty())
+    QString stRoot = pMsg->Root();
+     if (stRoot.isEmpty())
      {
          return SendRootDirs();
      }
-     else
-     {
-        if (!m_hashRoots.contains( pMsg->Root()))
+     
+    if (!m_hashRoots.contains(stRoot))
+    {
+        return SendRootDirs();
+    }
+
+    QString strAbs = m_hashRoots[stRoot];            
+    QString strDir = pMsg->RelativeDir();
+        if (!strDir.isEmpty())
+    {
+        strAbs.append(QDir::separator());
+#ifdef QT_DEBUG
+        if (strDir.endsWith("\\") ||
+            strDir.endsWith("/"))            
         {
-            return SendRootDirs();
+            Q_ASSERT(NULL);
         }
+#endif
+        strAbs.append(strDir);
+    }
 
-        QString strAbs = m_hashRoots[pMsg->Root()];            
-        QString strDir = pMsg->RelativeDir();
+    strAbs.remove("..");
+    QDir dir(strAbs);
+    if (!dir.exists())
+    {
+        return SendRootDirs();
+    }
 
+    QList<CNetMsgDirFiles::CItem> listItems;
+    {//dirs first
+                    
+        QStringList list = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Name);
+        while (!list.isEmpty())
+        {                        
+            listItems.append(CNetMsgDirFiles::CItem(list.takeFirst(), 0, 0));
+        }
+    }
 
-     }
-    return true;
+    QStringList list = dir.entryList(QDir::Files, QDir::Name);
+    while (!list.isEmpty())
+    {
+        QString strFile = list.takeFirst();
+        if (strFile.endsWith(".pdf", Qt::CaseInsensitive))
+        {
+            QFileInfo info(dir.absoluteFilePath(strFile));
+            listItems.append(CNetMsgDirFiles::CItem(strFile, 1, info.size()));
+        }
+    }
+    emit SendMsg(new CNetMsgDirFiles(listItems, false));
+    return false;
 }
 
 bool  CServer::SendRootDirs()
@@ -67,6 +107,21 @@ bool  CServer::SendRootDirs()
     }
     emit SendMsg(new CNetMsgDirFiles(list, true)); 
     return true;
+}
+
+void  CServer::SendSrvInfo()
+{
+    quint32 nFlags=0;
+    if (m_hashRoots.isEmpty())
+    {
+        nFlags |=SRV_INFO_FLAG_NO_ROOTS;
+    }
+    if (!CAppSettings::Instance()->GetPwd().isEmpty())
+    {
+        nFlags |=SRV_INFO_FLAG_PWD_REQ;
+    }
+
+    emit SendMsg(new CNetMsgSrvInfo(nFlags, ""));
 }
 
 void CServer::SendMsgSlot(CNetMsgBase* pMsg)

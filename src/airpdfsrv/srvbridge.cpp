@@ -51,12 +51,12 @@ bool CSrvBridge::OnReceivedMsg(CNetMsgBase* pMsgIn)
 
 CNetSrvBridge::CNetSrvBridge(void)
     :m_pNetSocket(NULL)
-{
+{     
 }
-
 
 CNetSrvBridge::~CNetSrvBridge(void)
 {
+    AIRPDF_LOG(LOG_LEVEL_DEBUG,  "Removing server bridge");
 }
 
 
@@ -69,6 +69,7 @@ void CNetSrvBridge::SetNetSock(CNetSock* pSock)
 
 void CNetSrvBridge::OnError(QString strTxt)
 {
+    AIRPDF_LOG(LOG_LEVEL_INFO,  QString("Remote[%1:%2]:%3").arg(m_pNetSocket->peerAddress().toString()).arg(m_pNetSocket->peerPort()).arg(strTxt));
     m_pNetSocket->deleteLater();
 }
 

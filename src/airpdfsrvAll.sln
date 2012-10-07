@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{73642DED
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "airpdfsrv", "airpdfsrv\airpdfsrv.vcxproj", "{ED9631DD-78F2-463B-88DD-47320EA1F24A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "srvtest", "srvtest\srvtest.vcxproj", "{8394CF68-495C-482A-AB6B-68F68F2973F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,11 +23,16 @@ Global
 		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Debug|Win32.Build.0 = Debug|Win32
 		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Release|Win32.ActiveCfg = Release|Win32
 		{ED9631DD-78F2-463B-88DD-47320EA1F24A}.Release|Win32.Build.0 = Release|Win32
+		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Debug|Win32.Build.0 = Debug|Win32
+		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Release|Win32.ActiveCfg = Release|Win32
+		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{11F5F89A-0D34-4C79-B06C-E6CDCE53723E} = {73642DED-685F-4F12-B9D3-87D3F5E789D1}
+		{8394CF68-495C-482A-AB6B-68F68F2973F9} = {73642DED-685F-4F12-B9D3-87D3F5E789D1}
 	EndGlobalSection
 EndGlobal

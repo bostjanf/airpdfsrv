@@ -14,6 +14,7 @@ CNetSock::CNetSock(IBridgeNet* pBridge, QObject *parent)
 
 CNetSock::~CNetSock()
 {   
+    AIRPDF_LOG(LOG_LEVEL_DEBUG,  "Removing client communication");
     close();
     if (m_pMsgOut != NULL)
     {
@@ -63,10 +64,15 @@ void CNetSock::SendMsg(CNetMsgBase* pMsg)
     }
 }
 
+IBridgeNet* CNetSock::Bridge()
+{
+    return m_pBridge;
+}
+
 void CNetSock::ForceClose(QString strError)
 {
-    close();
     m_pBridge->OnError(strError);
+    close();
 }
 
 void CNetSock::SockBytesSend(qint64 nSend)

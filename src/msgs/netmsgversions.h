@@ -10,6 +10,7 @@ public:
     quint16 MajorVersion();
     quint16 MinorVersion();
     quint8 Os(){return m_nOS;}
+    quint16 Version(){return m_nVersion;}
 protected:
     bool LoadMsg(QDataStream& in);
     bool SaveMsg(QDataStream& out);

@@ -6,7 +6,10 @@
 CNetIdent::CNetIdent(quint32 nStartAs)
     : QObject(NULL), m_nStartAs(nStartAs),m_pSocketArr(NULL),m_nNumOfSockets(0),m_bLocalAddressEmited(false)
 {    
+    m_strHostname =   QHostInfo::localHostName(); 
+#ifdef AIR_PDF_SRV
     m_strHostname = CAppSettings::Instance()->GetSrvName();
+#endif
     if (m_strHostname.size()>255)
     {
         m_strHostname = m_strHostname.left(255);
@@ -34,7 +37,11 @@ bool CNetIdent::Init()
             
             m_pSocketArr = new QUdpSocket[m_nNumOfSockets];
 
-            quint16 nPort=  CAppSettings::Instance()->GetSrvPort();
+
+            quint16 nPort=AIRPDF_COMMUNICATE_PORT;
+#ifdef AIR_PDF_SRV
+            nPort = CAppSettings::Instance()->GetSrvPort();
+#endif
             if (m_pSocketArr[0].bind(QHostAddress::Any,nPort))
             {
                 AIRPDF_LOG(LOG_LEVEL_DEBUG, QString("broadcast server bind to port %1").arg(nPort));
@@ -195,7 +202,10 @@ bool CNetIdent::BroadCast()
         {
             add = QHostAddress::Broadcast;
         }
-        quint16 nPort=  CAppSettings::Instance()->GetSrvPort();
+        quint16 nPort=AIRPDF_COMMUNICATE_PORT;
+#ifdef AIR_PDF_SRV
+        nPort = CAppSettings::Instance()->GetSrvPort();
+#endif
         if (m_pSocketArr[idx].writeDatagram(datagram.data(), datagram.size(), add, nPort)!= datagram.size())
         {
             //Q_ASSERT(NULL);

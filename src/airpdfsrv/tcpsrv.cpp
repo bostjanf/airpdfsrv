@@ -34,8 +34,8 @@ void CTcpSrv::incomingConnection(int socketDescriptor)
     CNetSrvBridge* pBridge = new CNetSrvBridge();
     CNetSock* pSock = new CNetSock(pBridge);//sock is now pointer owner of CNetSrvBridge
     if (pSock->setSocketDescriptor(socketDescriptor))
-    {
-        AIRPDF_LOG(LOG_LEVEL_INFO,  QString("Client [%1] connected from %2.").arg(socketDescriptor).arg(pSock->peerAddress().toString()));
+    {       
+        AIRPDF_LOG(LOG_LEVEL_INFO,  QString("Client [%1] connected from %2:%3.").arg(socketDescriptor).arg(pSock->peerAddress().toString()).arg(pSock->peerPort()));
         pBridge->SetNetSock(pSock);
     }
     else

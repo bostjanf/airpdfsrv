@@ -24,6 +24,7 @@ protected slots:
     void OnErrorSlot(QString strTxt);
 protected:
     bool  SendRootDirs();
+    void  SendSrvInfo();
 protected:
     QHash<QString, QString> m_hashRoots;   
 private:

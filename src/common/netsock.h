@@ -7,8 +7,9 @@ class CNetSock : public QTcpSocket
     Q_OBJECT
 public:
     CNetSock(IBridgeNet* m_pBridge, QObject *parent=NULL);
-    ~CNetSock();
-    void SendMsg(CNetMsgBase*);    
+    virtual ~CNetSock();
+    void SendMsg(CNetMsgBase*);
+    IBridgeNet* Bridge();
 protected:
     void ForceClose(QString strError);    
 protected slots:
