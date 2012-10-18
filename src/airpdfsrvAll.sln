@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "airpdfsrv", "airpdfsrv\airp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "srvtest", "srvtest\srvtest.vcxproj", "{8394CF68-495C-482A-AB6B-68F68F2973F9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "airpdfgui", "airpdfgui\airpdfgui.vcxproj", "{246AE00A-43FC-4ACD-9E18-6670FB9A9088}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Debug|Win32.Build.0 = Debug|Win32
 		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Release|Win32.ActiveCfg = Release|Win32
 		{8394CF68-495C-482A-AB6B-68F68F2973F9}.Release|Win32.Build.0 = Release|Win32
+		{246AE00A-43FC-4ACD-9E18-6670FB9A9088}.Debug|Win32.ActiveCfg = Debug|Win32
+		{246AE00A-43FC-4ACD-9E18-6670FB9A9088}.Debug|Win32.Build.0 = Debug|Win32
+		{246AE00A-43FC-4ACD-9E18-6670FB9A9088}.Release|Win32.ActiveCfg = Release|Win32
+		{246AE00A-43FC-4ACD-9E18-6670FB9A9088}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

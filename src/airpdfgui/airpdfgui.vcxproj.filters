@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{974822c7-d044-4ed0-82b0-1b17a18a706d}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{3acf4f09-b4db-469b-88da-7ad1c4360f70}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files\net">
+      <UniqueIdentifier>{ffb13b0b-6f59-49cb-bdfc-0338c2be742f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\net">
+      <UniqueIdentifier>{8fbda6ad-ccb3-4e1d-86ce-6126f42e1eb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\msgs">
+      <UniqueIdentifier>{669879a1-a4d4-4242-9963-64461af99d72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\msgs">
+      <UniqueIdentifier>{0718c9c6-3a06-4467-9099-eeb805cb724b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{ff42c711-86cc-4adf-b180-245bd9008e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui">
+      <UniqueIdentifier>{08cd56a9-d5bb-4470-8adf-90f8ebde8a93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\GeneratedFiles\qrc_airpdfgui.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_netident.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_netident.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_netsock.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_netsock.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\netident.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\netsock.cpp">
+      <Filter>Source Files\net</Filter>
+    </ClCompile>
+    <ClCompile Include="..\msgs\netmsgbase.cpp">
+      <Filter>Source Files\msgs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\msgs\netmsgversions.cpp">
+      <Filter>Source Files\msgs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\msgs\netmsgbooks.cpp">
+      <Filter>Source Files\msgs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\msgs\netmsgfiles.cpp">
+      <Filter>Source Files\msgs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\msgs\netmsgsettings.cpp">
+      <Filter>Source Files\msgs</Filter>
+    </ClCompile>
+    <ClCompile Include="mainwnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_mainwnd.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_mainwnd.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_stackpage.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_stackpage.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_guiserversfind.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_guiserversfind.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="guiserversfind.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="stackpage.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="clientbridge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_SlidingStackedWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_SlidingStackedWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="SlidingStackedWidget.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\ibridge.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgs.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgsettings.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgversions.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgfiles.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgdefines.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgbooks.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\msgs\netmsgbase.h">
+      <Filter>Header Files\msgs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\build\airpdfgui\GeneratedFiles\ui_mainwnd.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\build\airpdfgui\GeneratedFiles\ui_guiserversfind.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clientbridge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="airpdfgui.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\common\netsock.h">
+      <Filter>Header Files\net</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\common\netident.h">
+      <Filter>Header Files\net</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainwnd.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainwnd.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="guiserversfind.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="guiserversfind.h">
+      <Filter>Header Files\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="stackpage.h">
+      <Filter>Header Files\gui</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SlidingStackedWidget.h">
+      <Filter>Header Files\gui</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="airpdfgui.rc" />
+  </ItemGroup>
+</Project>

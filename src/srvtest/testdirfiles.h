@@ -1,18 +1,25 @@
-#ifndef TESTDIRFILES_H
-#define TESTDIRFILES_H
-
-#include <QObject>
+#pragma once 
 
 class CTestDirFiles : public QObject
 {
     Q_OBJECT
 
 public:
-    CTestDirFiles(QObject *parent);
+    CTestDirFiles(bool &bTestFailed);
     ~CTestDirFiles();
-
-private:
-    
+public slots:
+    bool OnReceivedMsg(CNetMsgBase* pMsg);
+    void OnError(QString strTxt);   
+private slots:
+    void TestAllDirs();
+protected:
+    void WaitForMsg(quint32 nMsg);
+    void OnMsg(CNetMsgBase* pMsgIn);
+protected:
+    QStringList m_listRoots;
+    QStringList m_listCurrentRootDir;
+    QString m_strCurrRoot;
 };
 
-#endif // TESTDIRFILES_H
+
+

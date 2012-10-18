@@ -1,0 +1,41 @@
+QWidget { background-color: qlineargradient(spread:reflect, x1:1, y1:0.709955, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(53, 53, 53, 255));}
+
+QLabel
+{
+	color: white;
+	background-color: rgba(255, 255, 255, 0);
+	font: 12pt "MS Shell Dlg 2";
+}
+
+QPushButton {
+ 	color: white;
+	border: 2px solid #8f8f91;
+     border-radius: 4px;
+     min-width: 80px; 
+	 padding: 2px 
+}
+
+ QPushButton:pressed {
+     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                       stop: 0 #dadbde, stop: 1 #f6f7fa);
+ }
+
+ QListView {
+     border: 2px solid #8f8f91;
+     border-radius: 10px;
+	 padding: 2px ;
+	font: 12pt "MS Shell Dlg 2";
+ }
+
+
+ QListView::item {
+     color: white;
+	border: 1px solid #8f8f91;
+     border-radius: 4px;
+	 padding: 4px ;
+	background-color: qlineargradient(spread:reflect, x1:1, y1:0.642, x2:0.021, y2:0.631, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(22, 22, 22, 255));
+ }
+
+ QListView::item:selected {
+	background-color: qlineargradient(spread:reflect, x1:1, y1:0.642, x2:0.021, y2:0.631, stop:0 rgba(22, 22, 22, 255), stop:1 rgba(0, 0, 0, 255));
+ }

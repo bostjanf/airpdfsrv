@@ -73,7 +73,7 @@ bool CServer::OnMsgReqDir(CNetMsgReqDir*pMsg)
         QStringList list = dir.entryList(QDir::Dirs|QDir::NoDotAndDotDot, QDir::Name);
         while (!list.isEmpty())
         {                        
-            listItems.append(CNetMsgDirFiles::CItem(list.takeFirst(), 0, 0));
+            listItems.append(CNetMsgDirFiles::CItem(list.takeFirst(), DIR_FILE_TYPE_DIRECTORY, 0));
         }
     }
 
@@ -84,7 +84,7 @@ bool CServer::OnMsgReqDir(CNetMsgReqDir*pMsg)
         if (strFile.endsWith(".pdf", Qt::CaseInsensitive))
         {
             QFileInfo info(dir.absoluteFilePath(strFile));
-            listItems.append(CNetMsgDirFiles::CItem(strFile, 1, info.size()));
+            listItems.append(CNetMsgDirFiles::CItem(strFile, DIR_FILE_TYPE_FILE, info.size()));
         }
     }
     emit SendMsg(new CNetMsgDirFiles(listItems, false));
@@ -102,7 +102,7 @@ bool  CServer::SendRootDirs()
         QDir dir(strDir);
         if (dir.exists(strDir))
         {
-            list.append(CNetMsgDirFiles::CItem(strRoot, 0, 0));
+            list.append(CNetMsgDirFiles::CItem(strRoot, DIR_FILE_TYPE_ROOT, 0));
         }
     }
     emit SendMsg(new CNetMsgDirFiles(list, true)); 

@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="CMainDlg"/>
+  <qresource prefix="qss">
+    <file>Resources/qqs/styleSheet.qss</file>
+  </qresource>
+  <qresource prefix="img">
+    <file>Resources/img/comp_nosel.png</file>
+    <file>Resources/img/comp_sel.png</file>
+  </qresource>
+</RCC>
