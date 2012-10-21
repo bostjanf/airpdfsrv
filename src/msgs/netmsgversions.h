@@ -72,6 +72,7 @@ public:
     CNetMsgSrvInfo(CNetHeader& header);
     virtual ~CNetMsgSrvInfo(void);     
     quint32 Flags(){return m_nFlags;}
+    QString Info(){return m_strInfo;}
 protected:
     bool LoadMsg(QDataStream& in);
     bool SaveMsg(QDataStream& out);

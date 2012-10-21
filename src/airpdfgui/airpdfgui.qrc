@@ -6,5 +6,11 @@
   <qresource prefix="img">
     <file>Resources/img/comp_nosel.png</file>
     <file>Resources/img/comp_sel.png</file>
+    <file>Resources/img/folder_nosel.png</file>
+    <file>Resources/img/folder_sel.png</file>
+    <file>Resources/img/folderup_nosel.png</file>
+    <file>Resources/img/folderup_sel.png</file>
+    <file>Resources/img/pdf_nosel.png</file>
+    <file>Resources/img/pdf_sel.png</file>
   </qresource>
 </RCC>

@@ -5,6 +5,8 @@
 #include "netmsgversions.h"
 
 
+#include "guidirfiles.h"
+
 //static
 QString CGUIServersFind::Os(quint8 nOs)
 {
@@ -23,7 +25,6 @@ CGUIServersFind::CGUIServersFind(CMainWnd *parent)
 {
     ui.setupUi(this);
     m_pNetFinder = new CNetIdent(AIRPDF_MSG_ID_BROADCAST_GUI);
-
     connect(ui.listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(ConnectToSrv(QListWidgetItem*)));
 
 }
@@ -59,6 +60,8 @@ void CGUIServersFind::OnFirstShow()
 void CGUIServersFind::OnShow()
 {
     ui.listWidget->clear ();//clear
+    ui.labelInfo->setText("");
+    ui.listWidget->setEnabled(true);
 
     m_pMainWnd->Disconnect();    
     m_pNetFinder->ResetBrodcast();
@@ -73,6 +76,10 @@ bool CGUIServersFind::OnMsg(CNetMsgBase* pNetMsg)
         case AIRPDF_MSG_ID_SRV_VERSION:
         {
             return OnMsgSrvVersion((CNetMsgSrvVersion*)pNetMsg);
+        }break;
+        case AIRPDF_MSG_ID_SRV_INFO:
+        {
+            return OnMsgSrvInfo((CNetMsgSrvInfo*)pNetMsg);
         }break;
     }
     return false;
@@ -103,6 +110,29 @@ bool CGUIServersFind::OnMsgSrvVersion(CNetMsgSrvVersion* pMsg)
     SendMsg(new CNetMsgGuiVersion());
     return true;
 }
+
+bool CGUIServersFind::OnMsgSrvInfo(CNetMsgSrvInfo* pMsg)
+{
+    quint32 nFlags =  pMsg->Flags();
+    if ((nFlags&SRV_INFO_FLAG_PWD_REQ)==SRV_INFO_FLAG_PWD_REQ)
+    {
+        ui.labelInfo->setText("Password required.");
+        return true;
+    }
+    else if ((nFlags&SRV_INFO_FLAG_NO_ROOTS)==SRV_INFO_FLAG_NO_ROOTS)
+    {
+        ui.labelInfo->setText("No roots.");
+        return true;
+    }
+    else if ((nFlags&SRV_INFO_FLAG_SHOW_TXT)==SRV_INFO_FLAG_SHOW_TXT)
+    {
+         ui.labelInfo->setText(pMsg->Info());
+    }
+
+    AddPage(new CGUIDirFiles(m_pMainWnd));
+    return true;
+}
+
 
 void CGUIServersFind::AddToList(QString strIpAddress, QString strHostname)
 {

@@ -1,3 +1,5 @@
+* [myFontSize='small'] {	font: 8pt "MS Shell Dlg 2" }
+
 QWidget { background-color: qlineargradient(spread:reflect, x1:1, y1:0.709955, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(53, 53, 53, 255));}
 
 QLabel

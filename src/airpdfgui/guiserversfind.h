@@ -1,10 +1,11 @@
-#pragma once
+    
 
 #include "ui_guiserversfind.h"
 
 class CMainWnd;
 class CNetIdent;
 class CNetMsgSrvVersion;
+class CNetMsgSrvInfo;
 class CGUIServersFind : public CStackPage
 {
     Q_OBJECT
@@ -21,6 +22,7 @@ public:
     bool OnNetError(QString strTxt);
 protected:
     bool OnMsgSrvVersion(CNetMsgSrvVersion* pMsg);
+    bool OnMsgSrvInfo(CNetMsgSrvInfo* pMsg);
     void AddToList(QString strIpAddress, QString strHostname);
     bool IsAlreadyInShown(QString strIpAddress);
 protected slots:
