@@ -7,22 +7,17 @@ CDirFileListItem::CDirFileListItem(QWidget* pParent, quint8 nType, QString strNa
     :QWidget(pParent),m_nType(nType), m_strName(strName)
 {
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-
     setMinimumSize(QSize(100, 40));
     setMaximumSize(QSize(16777215, 70));
     setBaseSize(QSize(100, 40));
 
     QHBoxLayout* horizontalLayout = new QHBoxLayout(this);
-    horizontalLayout->setSpacing(2);
-    horizontalLayout->setContentsMargins(1, 1, 1, 1);
-
     BuildDirUI(horizontalLayout);
     if (nType == DIR_FILE_TYPE_FILE)
     {
         BuildFileUI(horizontalLayout,nSize, nDate);
     }
 }
-
 
 CDirFileListItem::~CDirFileListItem(void)
 {
@@ -38,15 +33,6 @@ QString CDirFileListItem::Name()
     return m_strName;
 }
 
-void CDirFileListItem::Selected()
-{
-
-}
-
-void CDirFileListItem::UnSelected()
-{
-
-}
 
 void CDirFileListItem::BuildDirUI(QHBoxLayout* horizontalLayout)
 {
@@ -59,9 +45,9 @@ void CDirFileListItem::BuildDirUI(QHBoxLayout* horizontalLayout)
 
     labelTitle = new QLabel(this);
     labelTitle->setText(m_strName);
-    horizontalLayout->addWidget(labelIcon);
+    horizontalLayout->addWidget(labelTitle);
 
-    //horizontalLayout->addItem(new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Minimum));
+    horizontalLayout->addItem(new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Minimum));
 }
 
 void CDirFileListItem::BuildFileUI(QHBoxLayout* horizontalLayout, quint32 nSize, quint32 nDate)
@@ -94,15 +80,15 @@ void CDirFileListItem::SetIcon(QLabel* pLabel)
         case DIR_FILE_TYPE_ROOT:
         case DIR_FILE_TYPE_DIRECTORY:
         {
-            pLabel->setPixmap(QPixmap(":/img/Resources/img/folder_sel.png"));
+            pLabel->setPixmap(QPixmap(":/img/Resources/img/folder_nosel.png"));
         }break;
         case DIR_FILE_TYPE_FILE:
         {
-            pLabel->setPixmap(QPixmap(":/img/Resources/img/pdf_sel.png"));
+            pLabel->setPixmap(QPixmap(":/img/Resources/img/pdf_nosel.png"));
         }break;
         case DIR_FILE_TYPE_DIR_UP:
         {
-            pLabel->setPixmap(QPixmap(":/img/Resources/img/folderup_sel.png"));
+            pLabel->setPixmap(QPixmap(":/img/Resources/img/folderup_nosel.png"));
         }break;
         default:
             Q_ASSERT(NULL);

@@ -1,4 +1,5 @@
 * [myFontSize='small'] {	font: 8pt "MS Shell Dlg 2" }
+* [mySelection='selected'] {	background-color: qlineargradient(spread:reflect, x1:1, y1:0.642, x2:0.021, y2:0.631, stop:0 rgba(22, 22, 22, 255), stop:1 rgba(0, 0, 0, 255)); }
 
 QWidget { background-color: qlineargradient(spread:reflect, x1:1, y1:0.709955, x2:1, y2:0, stop:0 rgba(0, 0, 0, 255), stop:1 rgba(53, 53, 53, 255));}
 
@@ -41,3 +42,16 @@ QPushButton {
  QListView::item:selected {
 	background-color: qlineargradient(spread:reflect, x1:1, y1:0.642, x2:0.021, y2:0.631, stop:0 rgba(22, 22, 22, 255), stop:1 rgba(0, 0, 0, 255));
  }
+ 
+QScrollBar
+{
+	color: white;
+}
+
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical 
+{
+      border: 2px solid grey;
+      width:  5px;
+      height: 5px;
+      background: white;
+}

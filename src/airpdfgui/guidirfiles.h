@@ -16,11 +16,14 @@ public:
     bool OnMsg(CNetMsgBase* pNetMsg);
     bool OnNetError(QString strTxt);
 protected:
+    void SendReqDirFiles();
     bool OnMsgDirFiles(CNetMsgDirFiles* pMsg);
 protected slots:
        void OnServers();
        void OnRoots();       
-       void OnItemDoubleClicked();
+       void OnItemSelected(QListWidgetItem*);
 private:
     Ui::CGUIDirFiles ui;
+    QString m_strRoot;
+    QString m_strPath;
 };

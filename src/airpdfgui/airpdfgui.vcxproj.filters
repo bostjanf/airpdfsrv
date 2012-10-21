@@ -147,7 +147,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dirfilelistitem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Debug\moc_dirfilelistitem.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\build\airpdfgui\Release\moc_dirfilelistitem.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,13 +196,7 @@
     <ClInclude Include="..\..\build\airpdfgui\GeneratedFiles\ui_guidirfiles.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\build\airpdfgui\GeneratedFiles\ui_dirfilewidget.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dirfilelistitem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -234,8 +234,8 @@
     <CustomBuild Include="guidirfiles.h">
       <Filter>Header Files\gui</Filter>
     </CustomBuild>
-    <CustomBuild Include="dirfilewidget.ui">
-      <Filter>Form Files</Filter>
+    <CustomBuild Include="dirfilelistitem.h">
+      <Filter>Header Files\gui</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
